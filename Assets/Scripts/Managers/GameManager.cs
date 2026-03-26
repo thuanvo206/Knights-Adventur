@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-
     Player player;
     public Slider healthBar;
     bool isGamePaused = false;
@@ -14,31 +13,54 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        player = FindObjectOfType<Player>();
-        healthBar.maxValue = player.maxPlayerHealth;
+        // Không tìm player ở đây nữa vì lúc Start game online, player chưa Spawn xong
     }
-   
+
     void Update()
     {
+        // 1. Kiểm tra nếu chưa có player thì đi tìm liên tục
+        if (player == null)
+        {
+            player = FindObjectOfType<Player>();
+            
+            // Nếu đã tìm thấy player, thiết lập thanh máu ban đầu
+            if (player != null)
+            {
+                healthBar.maxValue = player.maxPlayerHealth;
+            }
+            
+            // Nếu vẫn chưa thấy player (đang chờ kết nối), thoát Update để tránh lỗi các dòng dưới
+            return; 
+        }
+
+        // 2. Logic xử lý khi đã có player
         if (player.isDead)
         {
             Invoke("RestartGame", 0.4f);
         }
-        UpdateUI();
-    }
 
-    public void RestartGame()
-    {
-        Scene scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(scene.name);
-        Time.timeScale = 1.0f;
+        UpdateUI();
     }
 
     void UpdateUI()
     {
-        healthBar.value = player.currentPlayerHealth;
-        if (player.currentPlayerHealth <= 0)
-            healthBar.minValue = 0;
+        // Luôn kiểm tra player để chắc chắn không truy cập vào biến rỗng
+        if (player != null)
+        {
+            healthBar.value = player.currentPlayerHealth;
+            
+            if (player.currentPlayerHealth <= 0)
+                healthBar.minValue = 0;
+        }
+    }
+
+    public void RestartGame()
+    {
+        // Lưu ý: Trong Fusion, LoadScene kiểu này sẽ làm mất kết nối nếu không xử lý đúng.
+        // Nhưng tạm thời để sửa lỗi Crash của bạn:
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
+        Time.timeScale = 1.0f;
     }
 
     public void PauseGame()
@@ -48,12 +70,12 @@ public class GameManager : MonoBehaviour
         if (isGamePaused == true)
         {
             Time.timeScale = 0.0f;
-            pauseGame.SetActive(true);
+            if (pauseGame != null) pauseGame.SetActive(true);
         }
         else
         {
             Time.timeScale = 1.0f;
-            pauseGame.SetActive(false);
+            if (pauseGame != null) pauseGame.SetActive(false);
         }     
     }
 

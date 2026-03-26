@@ -14,10 +14,10 @@ public class GiveHealth : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.tag == "Player")
-        {
-            player.addHealth = true;
-            Destroy(gameObject);
-        }
+if (collider.CompareTag("Player"))
+{
+    player.addHealth = true; 
+    Destroy(gameObject);
+}
     }
 }
