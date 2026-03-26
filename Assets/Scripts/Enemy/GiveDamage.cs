@@ -13,9 +13,9 @@ public class GiveDamage : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.tag == "Player")
-        {
-            player.isHurt = true;
-        }    
+if (collider.tag == "Player")
+{
+    player.isHurt = true; // Dòng này giữ nguyên nhưng đảm bảo isHurt trong Player.cs là public
+} 
     }
 }
