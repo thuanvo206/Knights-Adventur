@@ -314,7 +314,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
@@ -334,14 +334,22 @@ MonoBehaviour:
   playerSpeed: 15
   jumpPower: 1000
   doubleJumpPower: 750
+  _maxPlayerHealth: 100
   _currentPlayerHealth: 0
   _currentCoin: 0
-  _isDead: 0
-  _isGround: 0
+  _isDead:
+    _value: 0
+  _isGround:
+    _value: 0
+  _canDoubleJump:
+    _value: 0
+  isHurt: 0
+  addHealth: 0
+  earnCoin: 0
+  canDamage: 1
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  deadForce: 3
 --- !u!95 &483575955
 Animator:
   serializedVersion: 7
@@ -397,7 +405,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Fusion.Runtime.dll::Fusion.NetworkTransform
   _stateAuthorityChangeErrorCorrectionDelta: 0
-  SyncScale: 0
-  SyncParent: 0
+  SyncScale: 1
+  SyncParent: 1
   _autoAOIOverride: 1
   DisableSharedModeInterpolation: 0

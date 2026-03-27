@@ -12,7 +12,7 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     // khai báo một NetworkRunner để quản lý kết nối mạng
     private NetworkRunner _runner;
     public LobbyUI lobbyUI; // tham chiếu đến LobbyUI để cập nhật danh sách phòng khi có thay đổi
-
+    public Transform spawnPoint;
     public void Awake()
     {
         // tạo một NetworkRunner mới và gán cho biến _runner
@@ -70,22 +70,18 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     // player tham gia vào mạng
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
-        Debug.Log($" >>>>>>> Player joined: {player}");
-        // chỉ host mới có quyền tạo nhân vật cho player
         if (runner.IsServer)
         {
-            // ngẫu nhiên 1 vị trí spawn cho player
-            var spawnPosition = new Vector2(Random.Range(-5f, 5f), Random.Range(-5f, 5f));
-            // tạo nhân vật tại vị trí spawn và gán cho player
+            // Lấy vị trí từ spawnPoint, nếu chưa gán thì mặc định là Vector2.zero
+            Vector2 spawnPosition = spawnPoint != null ? (Vector2)spawnPoint.position : Vector2.zero;
+
             var networkPlayerObject = runner.Spawn(
                 playerPrefab,
                 spawnPosition,
                 Quaternion.identity,
                 player);
-            // lưu trữ nhân vật đã tạo vào dictionary
+
             _spawnedCharacters[player] = networkPlayerObject;
-            Debug.Log($" >>>>>>> Spawned player object for {player} at {spawnPosition}");
-            Debug.Log($" >>>>>>> Current spawned characters: {_spawnedCharacters.Count}");
         }
     }
 

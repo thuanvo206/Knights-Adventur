@@ -760,6 +760,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BasicSpawner
   lobbyUI: {fileID: 1142792873}
+  spawnPoint: {fileID: 8955625412676733700, guid: e85410dbe29693345a55d77ea739e193, type: 3}
   playerPrefab:
     RawGuidValue: e85410dbe29693345a55d77ea739e193
 --- !u!4 &943495246
