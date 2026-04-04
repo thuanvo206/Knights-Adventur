@@ -1,23 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GiveHealth : MonoBehaviour
 {
     public int health;
-    Player player;
-
-    void Start()
-    {
-        player = FindObjectOfType<Player>();
-    }
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-if (collider.CompareTag("Player"))
-{
-    player.addHealth = true; 
-    Destroy(gameObject);
-}
+        if (collider.CompareTag("Player"))
+        {
+            Player p = collider.GetComponent<Player>();
+            if (p != null)
+            {
+                p.addHealth = true; 
+                Destroy(gameObject);
+            }
+        }
     }
 }

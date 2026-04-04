@@ -3,19 +3,19 @@ using UnityEngine;
 public class AddCoin : MonoBehaviour
 {
     public int coin;
-    Player player;
-
-    void Start()
-    {
-        player = FindObjectOfType<Player>();
-    }
+    // Không cần biến Player ở đây nữa để tránh lỗi Start() chạy sớm
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.tag == "Player")
+        if (collider.CompareTag("Player"))
         {
-            player.earnCoin = true;
-            Destroy(gameObject);
+            // Lấy trực tiếp script từ đối tượng va chạm
+            Player p = collider.GetComponent<Player>();
+            if (p != null)
+            {
+                p.earnCoin = true;
+                Destroy(gameObject);
+            }
         }
     }
 }

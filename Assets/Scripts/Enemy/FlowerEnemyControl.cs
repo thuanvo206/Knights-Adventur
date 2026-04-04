@@ -7,13 +7,13 @@ public class FlowerEnemyControl : MonoBehaviour
     Rigidbody2D enemyBody2D;
     public float enemySpeed;
 
-    [Tooltip("Enemy'nin duvara �arp�p �arpmad���n�n bilgisini tutar.")]
+    [Tooltip("Enemy'nin duvara çarpıp çarpmadığının bilgisini tutar.")]
     bool isGround = true;
 
     Transform groundCheck;
     const float GroundCheckRadius = .1f;
 
-    [Tooltip("Duvar layer'�n� belirler.")]
+    [Tooltip("Duvar layer'ını belirler.")]
     public LayerMask groundLayer;
 
     public bool moveRight;
@@ -29,9 +29,11 @@ public class FlowerEnemyControl : MonoBehaviour
         edgeCheck = transform.Find("EdgeCheck");
     }
 
-
     void Update()
     {
+        // THÊM KIỂM TRA AN TOÀN: Chỉ chạy khi đã tìm thấy các Transform con
+        if (groundCheck == null || edgeCheck == null) return;
+
         isGround = Physics2D.OverlapCircle(groundCheck.position, GroundCheckRadius, groundLayer);
         onEdge = Physics2D.OverlapCircle(edgeCheck.position, GroundCheckRadius, groundLayer);
 
