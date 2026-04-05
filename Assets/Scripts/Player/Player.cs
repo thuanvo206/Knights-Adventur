@@ -3,15 +3,16 @@ using TMPro;
 using Fusion;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Player : NetworkBehaviour 
+public class Player : NetworkBehaviour
 {
     internal Rigidbody2D body2D;
     public float knockBackForce = 15000;
 
     [Header("Movement Settings")]
-    [Range(0, 20)] public float playerSpeed = 15;
-    [Range(500, 1500)] public float jumpPower = 1000;
-    [Range(500, 1000)] public float doubleJumpPower = 600;
+    // Đã xóa các thẻ [Range] để bạn có thể tùy chỉnh số tự do trong Inspector
+    public float playerSpeed = 25f;
+    public float jumpPower = 15f;
+    public float doubleJumpPower = 12f;
 
     [Networked] public int maxPlayerHealth { get; set; } = 100;
     [Networked] public int currentPlayerHealth { get; set; }
@@ -20,10 +21,7 @@ public class Player : NetworkBehaviour
     [Networked] public NetworkBool isGround { get; set; }
     [Networked] public NetworkBool canDoubleJump { get; set; }
 
-    public bool isHurt;
-    public bool addHealth;
-    public bool earnCoin;
-    public bool canDamage = true; 
+    public bool canDamage = true;
 
     bool facingRight = true;
     Transform groundCheck;
@@ -33,7 +31,7 @@ public class Player : NetworkBehaviour
     AudioSource audioSource;
     AudioClip audioJump;
 
-    public override void Spawned() 
+    public override void Spawned()
     {
         body2D = GetComponent<Rigidbody2D>();
         groundCheck = transform.Find("GroundCheck");
@@ -58,13 +56,13 @@ public class Player : NetworkBehaviour
 
         if (GetInput(out NetworkInputData data))
         {
-            // DI CHUYỂN: Sử dụng vận tốc nhưng kết hợp với Network Transform bên ngoài
+            // DI CHUYỂN: Sử dụng vận tốc 
             body2D.linearVelocity = new Vector2(data.move.x * playerSpeed, body2D.linearVelocity.y);
 
-            // QUAY MẶT: Chạy trực tiếp để không bị delay 3s
+            // QUAY MẶT
             if (data.move.x != 0) Flip(data.move.x);
 
-            // NHẢY: Sửa lỗi nhảy lúc được lúc không
+            // NHẢY: Đã sửa thành gán vận tốc thay vì AddForce
             if (data.jumpPressed)
             {
                 if ((bool)isGround)
@@ -82,47 +80,53 @@ public class Player : NetworkBehaviour
 
         if (HasStateAuthority)
         {
-            HandleStatusEffects();
+            // Chú ý: Đã xóa HandleStatusEffects() vì máu và xu được xử lý trực tiếp ở các file AddCoin, GiveHealth... (như hướng dẫn trước)
             CheckDeathLimits();
         }
     }
 
-public override void Render()
-{
-    // Giữ nguyên các code cũ của bạn về Flip và Animation...
-    UpdateAnimations();
-
-    // --- ĐOẠN CODE MỚI ĐỂ HIỂN THỊ ĐÚNG MÁU MÌNH ---
-    // Nếu nhân vật này là của TÔI điều khiển
-    if (HasInputAuthority) 
+    public override void Render()
     {
-        var gm = FindObjectOfType<GameManager>();
-        if (gm != null && gm.healthBar != null)
+        UpdateAnimations();
+
+        // HIỂN THỊ ĐÚNG MÁU VÀ XU CHO TỪNG NGƯỜI CHƠI
+        if (HasInputAuthority)
         {
-            gm.healthBar.maxValue = maxPlayerHealth;
-            gm.healthBar.value = currentPlayerHealth;
-        }
-    }
-}
+            var gm = FindObjectOfType<GameManager>();
+            if (gm != null)
+            {
+                // Cập nhật thanh máu
+                if (gm.healthBar != null)
+                {
+                    gm.healthBar.maxValue = maxPlayerHealth;
+                    gm.healthBar.value = currentPlayerHealth;
+                }
 
-    void HandleStatusEffects()
-    {
-        if (!HasStateAuthority) return;
-        if (isHurt) { currentPlayerHealth -= 10; isHurt = false; }
-        if (addHealth) { currentPlayerHealth = Mathf.Min(currentPlayerHealth + 20, maxPlayerHealth); addHealth = false; }
-        if (earnCoin) { currentCoin += 1; earnCoin = false; }
+                // CẬP NHẬT CHỮ SỐ XU LÊN UI
+                if (gm.coinText != null)
+                {
+                    gm.coinText.text = currentCoin.ToString();
+                }
+            }
+        }
     }
 
     public void Jump()
     {
-        body2D.linearVelocity = new Vector2(body2D.linearVelocity.x, 0);
-        body2D.AddForce(new Vector2(0, jumpPower));
+        // Gán thẳng vận tốc trục Y
+        body2D.linearVelocity = new Vector2(body2D.linearVelocity.x, jumpPower);
+
+        if (audioSource != null && audioJump != null)
+            audioSource.PlayOneShot(audioJump);
     }
 
     public void DoubleJump()
     {
-        body2D.linearVelocity = new Vector2(body2D.linearVelocity.x, 0);
-        body2D.AddForce(new Vector2(0, doubleJumpPower));
+        // Gán thẳng vận tốc trục Y
+        body2D.linearVelocity = new Vector2(body2D.linearVelocity.x, doubleJumpPower);
+
+        if (audioSource != null && audioJump != null)
+            audioSource.PlayOneShot(audioJump);
     }
 
     void Flip(float horizontal)
@@ -150,4 +154,21 @@ public override void Render()
         if (HasStateAuthority && (transform.position.y <= -6 || currentPlayerHealth <= 0))
             isDead = true;
     }
-}
+
+    // ... (các code ở trên giữ nguyên)
+
+    // THÊM 2 BIẾN NÀY ĐỂ TÍNH THỜI GIAN BẤT TỬ
+    public float invincibilityDuration = 1f; // Bất tử 1 giây sau khi bị thương
+    private float lastDamageTime;
+
+    // THÊM HÀM NÀY ĐỂ XỬ LÝ TRỪ MÁU
+    public void TakeDamage(int damage)
+    {
+        // Kiểm tra xem đã hết thời gian bất tử chưa mới cho trừ máu tiếp
+        if (HasStateAuthority && Time.time >= lastDamageTime + invincibilityDuration)
+        {
+            currentPlayerHealth -= damage;
+            lastDamageTime = Time.time; // Reset lại đồng hồ tính giờ
+        }
+    }
+} // Chữ ngoặc nhọn kết thúc class Player

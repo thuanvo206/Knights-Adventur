@@ -15724,6 +15724,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9182433771858454663, guid: 9f3b1236927332448a21444176b4cea4, type: 3}
+      propertyPath: coinText
+      value: 
+      objectReference: {fileID: 1255383882}
+    - target: {fileID: 9182433771858454663, guid: 9f3b1236927332448a21444176b4cea4, type: 3}
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 805405587}
@@ -26103,6 +26107,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1496775910189198858, guid: 18e94ac05750cff47ad0a04933164c53, type: 3}
   m_PrefabInstance: {fileID: 1255232561}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1255383882 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 842612444140008125, guid: 4c6c09381c51a084ea4470363d6859dd, type: 3}
+  m_PrefabInstance: {fileID: 8068693025984675907}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1262192145
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33498,7 +33513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 806f0696300aeac44a0e17efee222854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentLanguage: English
+  currentLanguage: Turkish
   detectLanguage: 0
   defaultLanguage: Turkish
   saveLoad: 1

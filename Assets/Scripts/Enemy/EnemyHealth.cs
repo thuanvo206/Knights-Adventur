@@ -35,9 +35,11 @@ public class EnemyHealth : MonoBehaviour
     {
         if (other.CompareTag("PlayerItem"))
         {
-            // Tìm player trong cảnh ngay lúc va chạm để đảm bảo không bị Null
-            Player player = FindObjectOfType<Player>();
-            if (player != null && player.canDamage)
+            // Lấy trực tiếp Player đang cầm vũ khí chém trúng (từ parent)
+            Player player = other.GetComponentInParent<Player>();
+            
+            // Chỉ Host mới tính toán máu để đồng bộ cho tất cả
+            if (player != null && player.canDamage && player.HasStateAuthority)
             {
                 currentEnemyHealth -= playerDamageToEnemy;
             }

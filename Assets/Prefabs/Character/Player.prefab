@@ -306,7 +306,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 3
+  m_GravityScale: 15
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -331,9 +331,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockBackForce: 20000
-  playerSpeed: 15
-  jumpPower: 1000
-  doubleJumpPower: 750
+  playerSpeed: 200
+  jumpPower: 400
+  doubleJumpPower: 80
   _maxPlayerHealth: 100
   _currentPlayerHealth: 0
   _currentCoin: 0
@@ -343,13 +343,11 @@ MonoBehaviour:
     _value: 0
   _canDoubleJump:
     _value: 0
-  isHurt: 0
-  addHealth: 0
-  earnCoin: 0
   canDamage: 1
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  invincibilityDuration: 1
 --- !u!95 &483575955
 Animator:
   serializedVersion: 7

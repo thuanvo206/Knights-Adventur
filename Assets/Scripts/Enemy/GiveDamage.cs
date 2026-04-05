@@ -1,17 +1,19 @@
 using UnityEngine;
+using Fusion;
 
 public class GiveDamage : MonoBehaviour
 {
-    public int damage;
+    public int damage = 10;
 
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.CompareTag("Player"))
         {
             Player p = collider.GetComponent<Player>();
-            if (p != null)
+            if (p != null && p.HasStateAuthority)
             {
-                p.isHurt = true;
+                // Gọi hàm TakeDamage để nó tự kiểm tra thời gian bất tử
+                p.TakeDamage(damage);
             } 
         }
     }

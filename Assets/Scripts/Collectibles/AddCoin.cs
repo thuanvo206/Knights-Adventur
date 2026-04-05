@@ -1,19 +1,22 @@
 using UnityEngine;
+using Fusion;
 
 public class AddCoin : MonoBehaviour
 {
-    public int coin;
-    // Không cần biến Player ở đây nữa để tránh lỗi Start() chạy sớm
+    public int coin = 1;
+    bool isCollected = false; // Thêm biến khóa
 
     void OnTriggerEnter2D(Collider2D collider)
     {
+        if (isCollected) return; // Nếu đã bị ăn rồi thì thoát luôn
+
         if (collider.CompareTag("Player"))
         {
-            // Lấy trực tiếp script từ đối tượng va chạm
             Player p = collider.GetComponent<Player>();
-            if (p != null)
+            if (p != null && p.HasStateAuthority)
             {
-                p.earnCoin = true;
+                isCollected = true; // Khóa lại ngay lập tức
+                p.currentCoin += coin;
                 Destroy(gameObject);
             }
         }

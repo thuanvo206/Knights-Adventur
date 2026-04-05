@@ -1,36 +1,16 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro; // Thêm dòng này để xài TextMeshPro
 
 public class GameManager : MonoBehaviour
 {
-    Player player;
     public Slider healthBar;
+    public TextMeshProUGUI coinText; // Thêm dòng này để chứa UI Text của Xu
+
     bool isGamePaused = false;
     public GameObject pauseGame;
     public GameObject endingGame;
-
-    void Update()
-    {
-        if (player == null)
-        {
-            player = FindObjectOfType<Player>();
-            if (player != null) healthBar.maxValue = player.maxPlayerHealth;
-            return; 
-        }
-
-        if (player.isDead) Invoke("RestartGame", 0.4f);
-        UpdateUI();
-    }
-
-    public void UpdateUI()
-    {
-        if (player != null)
-        {
-            healthBar.value = player.currentPlayerHealth;
-            if (player.currentPlayerHealth <= 0) healthBar.value = 0;
-        }
-    }
 
     public void RestartGame()
     {
