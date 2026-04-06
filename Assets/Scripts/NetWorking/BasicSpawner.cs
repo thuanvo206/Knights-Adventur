@@ -110,12 +110,12 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     public void OnInput(NetworkRunner runner, NetworkInput input)
     {
         var data = new NetworkInputData();
-    data.move = new Vector2(Input.GetAxisRaw("Horizontal"), 0);
+        data.move = new Vector2(Input.GetAxisRaw("Horizontal"), 0);
 
-    // Kiểm tra phím Space (hoặc nút Jump mặc định)
-    data.jumpPressed = Input.GetButton("Jump"); 
+        // Kiểm tra phím Space (hoặc nút Jump mặc định) - dùng GetButtonDown để chỉ trigger khi nhấn
+        data.jumpPressed = Input.GetButtonDown("Jump"); 
 
-    input.Set(data);
+        input.Set(data);
     }
 
     public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input)

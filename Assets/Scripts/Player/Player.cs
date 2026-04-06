@@ -10,8 +10,8 @@ public class Player : NetworkBehaviour
 
     [Header("Movement Settings")]
     // Đã xóa các thẻ [Range] để bạn có thể tùy chỉnh số tự do trong Inspector
-    public float playerSpeed = 25f;
-    public float jumpPower = 15f;
+    public float playerSpeed = 30f;
+    public float jumpPower = 10f;
     public float doubleJumpPower = 12f;
 
     [Networked] public int maxPlayerHealth { get; set; } = 100;
@@ -39,6 +39,9 @@ public class Player : NetworkBehaviour
         audioSource = GetComponent<AudioSource>();
         audioJump = Resources.Load("Sounds/Jump") as AudioClip;
 
+        // Set interpolation để smooth movement
+        body2D.interpolation = RigidbodyInterpolation2D.Interpolate;
+
         if (HasStateAuthority)
         {
             currentPlayerHealth = maxPlayerHealth;
@@ -46,6 +49,9 @@ public class Player : NetworkBehaviour
             currentCoin = 0;
         }
     }
+
+    [Networked] public Vector2 networkedVelocity { get; set; }
+    [Networked] public NetworkBool networkedJumpPressed { get; set; }
 
     public override void FixedUpdateNetwork()
     {
@@ -56,25 +62,35 @@ public class Player : NetworkBehaviour
 
         if (GetInput(out NetworkInputData data))
         {
-            // DI CHUYỂN: Sử dụng vận tốc 
-            body2D.linearVelocity = new Vector2(data.move.x * playerSpeed, body2D.linearVelocity.y);
+            // Lưu input vào networked variables để replicate
+            networkedVelocity = new Vector2(data.move.x * playerSpeed, body2D.linearVelocity.y);
+            networkedJumpPressed = data.jumpPressed;
+        }
 
-            // QUAY MẶT
-            if (data.move.x != 0) Flip(data.move.x);
+        // Áp dụng velocity từ networked variables
+        body2D.linearVelocity = networkedVelocity;
 
-            // NHẢY: Đã sửa thành gán vận tốc thay vì AddForce
-            if (data.jumpPressed)
+        // Clamp tốc độ rơi xuống để không quá chậm
+        if (body2D.linearVelocity.y < -5f)
+        {
+            body2D.linearVelocity = new Vector2(body2D.linearVelocity.x, -5f);
+        }
+
+        // QUAY MẶT
+        if (networkedVelocity.x != 0) Flip(networkedVelocity.x);
+
+        // NHẢY: Đã sửa thành gán vận tốc thay vì AddForce
+        if ((bool)networkedJumpPressed)
+        {
+            if ((bool)isGround)
             {
-                if ((bool)isGround)
-                {
-                    Jump();
-                    canDoubleJump = true;
-                }
-                else if ((bool)canDoubleJump)
-                {
-                    DoubleJump();
-                    canDoubleJump = false;
-                }
+                Jump();
+                canDoubleJump = true;
+            }
+            else if ((bool)canDoubleJump)
+            {
+                DoubleJump();
+                canDoubleJump = false;
             }
         }
 
