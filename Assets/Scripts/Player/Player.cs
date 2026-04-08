@@ -9,7 +9,6 @@ public class Player : NetworkBehaviour
     public float knockBackForce = 15000;
 
     [Header("Movement Settings")]
-    // Đã xóa các thẻ [Range] để bạn có thể tùy chỉnh số tự do trong Inspector
     public float playerSpeed = 30f;
     public float jumpPower = 10f;
     public float doubleJumpPower = 12f;
@@ -69,12 +68,6 @@ public class Player : NetworkBehaviour
 
         // Áp dụng velocity từ networked variables
         body2D.linearVelocity = networkedVelocity;
-
-        // Clamp tốc độ rơi xuống để không quá chậm
-        if (body2D.linearVelocity.y < -5f)
-        {
-            body2D.linearVelocity = new Vector2(body2D.linearVelocity.x, -5f);
-        }
 
         // QUAY MẶT
         if (networkedVelocity.x != 0) Flip(networkedVelocity.x);
