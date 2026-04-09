@@ -52282,9 +52282,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1861576390}
   - component: {fileID: 1861576391}
+  - component: {fileID: 1861576392}
   - component: {fileID: 1861576394}
   - component: {fileID: 1861576393}
-  - component: {fileID: 1861576392}
   m_Layer: 5
   m_Name: Panel Chat
   m_TagString: Untagged
@@ -52337,8 +52337,7 @@ MonoBehaviour:
   ObjectInterest: 1
   Flags: 262145
   NestedObjects: []
-  NetworkedBehaviours:
-  - {fileID: 1861576394}
+  NetworkedBehaviours: []
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &1861576393
 MonoBehaviour:
@@ -52352,9 +52351,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90c50e5d7a9f8624c9548ea6f365f9f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChatUi
-  chatPanel: {fileID: 1861576389}
+  chatPanel: {fileID: 1352277784}
   messagePrefab: {fileID: 4718135284910155699, guid: 7f1ac9feb52d4f64fbef4d91fe3a57a8, type: 3}
-  chatInput: {fileID: 1668942525}
+  inputField: {fileID: 1668942525}
   messageContainer: {fileID: 0}
   spawner: {fileID: 0}
 --- !u!114 &1861576394

@@ -1,14 +1,11 @@
 using System;
-using Fusion;
 using UnityEngine;
 
-public class ChatManager : NetworkBehaviour
+public class ChatManager : MonoBehaviour
 {
     public static ChatManager Instance { get; private set; }
-
-    // Action để thông báo khi nhận tin nhắn: (người gửi, nội dung)
+    
     public Action<string, string> OnMessageReceived;
-    // Action cho tin nhắn riêng: (người gửi, nội dung, người nhận)
     public Action<string, string, string> OnPrivateMessageReceived;
 
     private void Awake()
@@ -20,19 +17,32 @@ public class ChatManager : NetworkBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        Debug.Log("[ChatManager] Initialized");
     }
-
-    // RPC gửi tin nhắn chung cho tất cả mọi người
-    [Rpc(RpcSources.InputAuthority, RpcTargets.All)]
-    public void SendMessageRpc(string senderName, string message)
+    
+    public void SendMessage(string sender, string message)
     {
-        OnMessageReceived?.Invoke(senderName, message);
+        if (string.IsNullOrEmpty(sender) || string.IsNullOrEmpty(message))
+        {
+            Debug.LogWarning("[ChatManager] Sender or message is empty!");
+            return;
+        }
+        
+        // Hiển thị tin nhắn cục bộ ngay lập tức
+        OnMessageReceived?.Invoke(sender, message);
+        Debug.Log($"[Chat] {sender}: {message}");
     }
-
-    // RPC gửi tin nhắn riêng (Private Message)
-    [Rpc(RpcSources.InputAuthority, RpcTargets.All)]
-    public void SendPrivateMessageRpc(string senderName, string message, string targetName)
+    
+    public void SendPrivateMessage(string sender, string message, string target)
     {
-        OnPrivateMessageReceived?.Invoke(senderName, message, targetName);
+        if (string.IsNullOrEmpty(sender) || string.IsNullOrEmpty(message) || string.IsNullOrEmpty(target))
+        {
+            Debug.LogWarning("[ChatManager] Sender, message, or target is empty!");
+            return;
+        }
+        
+        // Hiển thị tin nhắn riêng cục bộ
+        OnPrivateMessageReceived?.Invoke(sender, message, target);
+        Debug.Log($"[Private] {sender} -> {target}: {message}");
     }
 }
