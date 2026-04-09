@@ -9,8 +9,7 @@ public class Player : NetworkBehaviour
     public float knockBackForce = 15000;
 
     [Header("Movement Settings")]
-    // Đã xóa các thẻ [Range] để bạn có thể tùy chỉnh số tự do trong Inspector
-    public float playerSpeed = 25f;
+    public float playerSpeed = 10f; // Đã chỉnh nhỏ lại cho hợp với Fusion
     public float jumpPower = 15f;
     public float doubleJumpPower = 12f;
 
@@ -20,8 +19,14 @@ public class Player : NetworkBehaviour
     [Networked] public NetworkBool isDead { get; set; }
     [Networked] public NetworkBool isGround { get; set; }
     [Networked] public NetworkBool canDoubleJump { get; set; }
+    
+    // Biến để sửa triệt để lỗi nhảy kép
+    [Networked] public NetworkBool prevJumpPressed { get; set; }
 
+    [Header("Combat Settings")]
     public bool canDamage = true;
+    public float invincibilityDuration = 1f; // Bất tử 1 giây sau khi bị thương
+    private float lastDamageTime;
 
     bool facingRight = true;
     Transform groundCheck;
@@ -39,6 +44,7 @@ public class Player : NetworkBehaviour
         audioSource = GetComponent<AudioSource>();
         audioJump = Resources.Load("Sounds/Jump") as AudioClip;
 
+        // Chỉ Host (StateAuthority) mới được set các giá trị khởi tạo
         if (HasStateAuthority)
         {
             currentPlayerHealth = maxPlayerHealth;
@@ -49,21 +55,26 @@ public class Player : NetworkBehaviour
 
     public override void FixedUpdateNetwork()
     {
+        // Dừng xử lý nếu object lỗi hoặc nhân vật đã chết
         if (Object == null || !Object.IsValid || (bool)isDead) return;
 
-        // Cập nhật GroundCheck liên tục trong nhịp mạng
+        // Cập nhật chạm đất liên tục
         isGround = Physics2D.OverlapCircle(groundCheck.position, GroundCheckRadius, groundLayer) != null;
 
+        // Lấy Input từ mạng
         if (GetInput(out NetworkInputData data))
         {
-            // DI CHUYỂN: Sử dụng vận tốc 
+            // --- 1. DI CHUYỂN ---
             body2D.linearVelocity = new Vector2(data.move.x * playerSpeed, body2D.linearVelocity.y);
 
-            // QUAY MẶT
+            // --- 2. QUAY MẶT ---
             if (data.move.x != 0) Flip(data.move.x);
 
-            // NHẢY: Đã sửa thành gán vận tốc thay vì AddForce
-            if (data.jumpPressed)
+            // --- 3. NHẢY ---
+            // Chỉ nhảy khi lúc này bấm, nhưng frame trước chưa bấm (Just Pressed)
+            bool jumpJustPressed = data.jumpPressed && !prevJumpPressed;
+
+            if (jumpJustPressed)
             {
                 if ((bool)isGround)
                 {
@@ -76,11 +87,19 @@ public class Player : NetworkBehaviour
                     canDoubleJump = false;
                 }
             }
+            
+            // Lưu lại trạng thái nút bấm cho frame tiếp theo
+            prevJumpPressed = data.jumpPressed; 
+        }
+        else
+        {
+            // Tránh lỗi trượt vô tận khi mất kết nối/thả nút
+            body2D.linearVelocity = new Vector2(0, body2D.linearVelocity.y);
         }
 
+        // --- 4. KIỂM TRA CHẾT (CHỈ HOST QUYẾT ĐỊNH) ---
         if (HasStateAuthority)
         {
-            // Chú ý: Đã xóa HandleStatusEffects() vì máu và xu được xử lý trực tiếp ở các file AddCoin, GiveHealth... (như hướng dẫn trước)
             CheckDeathLimits();
         }
     }
@@ -89,20 +108,18 @@ public class Player : NetworkBehaviour
     {
         UpdateAnimations();
 
-        // HIỂN THỊ ĐÚNG MÁU VÀ XU CHO TỪNG NGƯỜI CHƠI
+        // HIỂN THỊ UI DÀNH RIÊNG CHO MÁY CỦA NGƯỜI CHƠI NÀY (Local Player)
         if (HasInputAuthority)
         {
             var gm = FindObjectOfType<GameManager>();
             if (gm != null)
             {
-                // Cập nhật thanh máu
                 if (gm.healthBar != null)
                 {
                     gm.healthBar.maxValue = maxPlayerHealth;
                     gm.healthBar.value = currentPlayerHealth;
                 }
 
-                // CẬP NHẬT CHỮ SỐ XU LÊN UI
                 if (gm.coinText != null)
                 {
                     gm.coinText.text = currentCoin.ToString();
@@ -113,20 +130,14 @@ public class Player : NetworkBehaviour
 
     public void Jump()
     {
-        // Gán thẳng vận tốc trục Y
         body2D.linearVelocity = new Vector2(body2D.linearVelocity.x, jumpPower);
-
-        if (audioSource != null && audioJump != null)
-            audioSource.PlayOneShot(audioJump);
+        if (audioSource != null && audioJump != null) audioSource.PlayOneShot(audioJump);
     }
 
     public void DoubleJump()
     {
-        // Gán thẳng vận tốc trục Y
         body2D.linearVelocity = new Vector2(body2D.linearVelocity.x, doubleJumpPower);
-
-        if (audioSource != null && audioJump != null)
-            audioSource.PlayOneShot(audioJump);
+        if (audioSource != null && audioJump != null) audioSource.PlayOneShot(audioJump);
     }
 
     void Flip(float horizontal)
@@ -152,23 +163,26 @@ public class Player : NetworkBehaviour
     void CheckDeathLimits()
     {
         if (HasStateAuthority && (transform.position.y <= -6 || currentPlayerHealth <= 0))
-            isDead = true;
+        {
+            if (!(bool)isDead)
+            {
+                isDead = true;
+                Debug.Log("Player chết! Đang Load lại mạng...");
+                
+                // Load lại cảnh qua đường truyền mạng của Fusion
+                int currentSceneIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
+                Runner.LoadScene(SceneRef.FromIndex(currentSceneIndex));
+            }
+        }
     }
 
-    // ... (các code ở trên giữ nguyên)
-
-    // THÊM 2 BIẾN NÀY ĐỂ TÍNH THỜI GIAN BẤT TỬ
-    public float invincibilityDuration = 1f; // Bất tử 1 giây sau khi bị thương
-    private float lastDamageTime;
-
-    // THÊM HÀM NÀY ĐỂ XỬ LÝ TRỪ MÁU
     public void TakeDamage(int damage)
     {
-        // Kiểm tra xem đã hết thời gian bất tử chưa mới cho trừ máu tiếp
+        // Kiểm tra thời gian bất tử (chỉ Host mới được tính)
         if (HasStateAuthority && Time.time >= lastDamageTime + invincibilityDuration)
         {
             currentPlayerHealth -= damage;
-            lastDamageTime = Time.time; // Reset lại đồng hồ tính giờ
+            lastDamageTime = Time.time; // Reset đồng hồ bất tử
         }
     }
-} // Chữ ngoặc nhọn kết thúc class Player
+}

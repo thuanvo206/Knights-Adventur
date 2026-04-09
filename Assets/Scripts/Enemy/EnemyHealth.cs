@@ -1,33 +1,34 @@
 using UnityEngine;
+using Fusion;
 
-public class EnemyHealth : MonoBehaviour
+public class EnemyHealth : NetworkBehaviour // 1. Đổi thành NetworkBehaviour
 {
     public int maxEnemyHealth = 100;
-    public float currentEnemyHealth;
-    internal bool gotDamage;
+    
+    // 2. Đồng bộ máu quái vật qua mạng
+    [Networked] public float currentEnemyHealth { get; set; } 
+    
     public float playerDamageToEnemy;
     public GameObject deathParticle;
-    SpriteRenderer spriteRenderer;
-    CircleCollider2D cir2D;
-    Rigidbody2D body2D;
+    // ... (giữ nguyên khai báo các component khác)
 
-    void Start()
+    public override void Spawned() // Thay Start() bằng Spawned()
     {
-        currentEnemyHealth = maxEnemyHealth;
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        cir2D = GetComponent<CircleCollider2D>();
-        body2D = GetComponent<Rigidbody2D>();
+        // Chỉ Host mới được set máu ban đầu
+        if (HasStateAuthority) currentEnemyHealth = maxEnemyHealth; 
+        
+        // ... (giữ nguyên lệnh get component)
     }
 
-    void Update()
+    public override void FixedUpdateNetwork() // Thay Update() bằng FixedUpdateNetwork()
     {
-        if (currentEnemyHealth <= 0)
+        if (currentEnemyHealth <= 0 && HasStateAuthority)
         {
-            if(spriteRenderer) spriteRenderer.enabled = false;
-            if(cir2D) cir2D.enabled = false;
-            if(body2D) body2D.constraints = RigidbodyConstraints2D.FreezePositionX;
+            // Bật Particle (nên dùng RPC nếu muốn đẹp đồng bộ, nhưng tạm thời bật local cũng được)
             if(deathParticle) deathParticle.SetActive(true);
-            Destroy(gameObject, 1);
+            
+            // Host ra lệnh tiêu diệt quái trên toàn mạng
+            Runner.Despawn(Object); 
         }
     }
 
@@ -35,11 +36,10 @@ public class EnemyHealth : MonoBehaviour
     {
         if (other.CompareTag("PlayerItem"))
         {
-            // Lấy trực tiếp Player đang cầm vũ khí chém trúng (từ parent)
             Player player = other.GetComponentInParent<Player>();
             
-            // Chỉ Host mới tính toán máu để đồng bộ cho tất cả
-            if (player != null && player.canDamage && player.HasStateAuthority)
+            // Chỉ Host mới có quyền trừ máu quái
+            if (player != null && player.canDamage && HasStateAuthority)
             {
                 currentEnemyHealth -= playerDamageToEnemy;
             }
