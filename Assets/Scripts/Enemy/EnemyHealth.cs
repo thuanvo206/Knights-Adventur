@@ -7,10 +7,14 @@ public class EnemyHealth : NetworkBehaviour // 1. Đổi thành NetworkBehaviour
     
     // 2. Đồng bộ máu quái vật qua mạng
     [Networked] public float currentEnemyHealth { get; set; } 
+    internal bool gotDamage;
     
     public float playerDamageToEnemy;
     public GameObject deathParticle;
     // ... (giữ nguyên khai báo các component khác)
+    SpriteRenderer spriteRenderer;
+    CircleCollider2D cir2D;
+    Rigidbody2D body2D;
 
     public override void Spawned() // Thay Start() bằng Spawned()
     {
@@ -18,31 +22,34 @@ public class EnemyHealth : NetworkBehaviour // 1. Đổi thành NetworkBehaviour
         if (HasStateAuthority) currentEnemyHealth = maxEnemyHealth; 
         
         // ... (giữ nguyên lệnh get component)
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        cir2D = GetComponent<CircleCollider2D>();
+        body2D = GetComponent<Rigidbody2D>();
     }
 
     public override void FixedUpdateNetwork() // Thay Update() bằng FixedUpdateNetwork()
     {
         if (currentEnemyHealth <= 0 && HasStateAuthority)
         {
-            // Bật Particle (nên dùng RPC nếu muốn đẹp đồng bộ, nhưng tạm thời bật local cũng được)
+            if(spriteRenderer) spriteRenderer.enabled = false;
+            if(cir2D) cir2D.enabled = false;
+            if(body2D) body2D.constraints = RigidbodyConstraints2D.FreezePositionX;
             if(deathParticle) deathParticle.SetActive(true);
-            
-            // Host ra lệnh tiêu diệt quái trên toàn mạng
-            Runner.Despawn(Object); 
+            Runner.Despawn(Object);
         }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("PlayerItem"))
+    if (other.CompareTag("PlayerItem"))
+    {
+        Player player = other.GetComponentInParent<Player>();
+        
+        // Thay vì trừ trực tiếp, hãy gọi TakeDamage để tận dụng logic HasStateAuthority
+        if (player != null && player.canDamage) 
         {
-            Player player = other.GetComponentInParent<Player>();
-            
-            // Chỉ Host mới có quyền trừ máu quái
-            if (player != null && player.canDamage && HasStateAuthority)
-            {
-                currentEnemyHealth -= playerDamageToEnemy;
-            }
+           currentEnemyHealth -= playerDamageToEnemy; // Trừ máu quái vật
         }
+    }
     }
 }

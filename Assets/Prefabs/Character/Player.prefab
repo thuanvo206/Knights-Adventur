@@ -334,7 +334,8 @@ MonoBehaviour:
   knockBackForce: 20000
   playerSpeed: 15
   jumpPower: 10
-  doubleJumpPower: 10
+  doubleJumpPower: 15
+  stompBouncePower: 1000
   _maxPlayerHealth: 100
   _currentPlayerHealth: 0
   _currentCoin: 0
@@ -344,11 +345,14 @@ MonoBehaviour:
     _value: 0
   _canDoubleJump:
     _value: 0
+  _prevJumpPressed:
+    _value: 0
   canDamage: 1
+  invincibilityDuration: 1
+  stompDamage: 1000
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  invincibilityDuration: 1
 --- !u!95 &483575955
 Animator:
   serializedVersion: 7

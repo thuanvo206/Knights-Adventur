@@ -9,9 +9,10 @@ public class Player : NetworkBehaviour
     public float knockBackForce = 15000;
 
     [Header("Movement Settings")]
-    public float playerSpeed = 10f; // Đã chỉnh nhỏ lại cho hợp với Fusion
+    public float playerSpeed = 10f;
     public float jumpPower = 15f;
     public float doubleJumpPower = 12f;
+    public float stompBouncePower = 12f; // Lực nảy lên khi giẫm trúng quái
 
     [Networked] public int maxPlayerHealth { get; set; } = 100;
     [Networked] public int currentPlayerHealth { get; set; }
@@ -20,13 +21,13 @@ public class Player : NetworkBehaviour
     [Networked] public NetworkBool isGround { get; set; }
     [Networked] public NetworkBool canDoubleJump { get; set; }
     
-    // Biến để sửa triệt để lỗi nhảy kép
     [Networked] public NetworkBool prevJumpPressed { get; set; }
 
     [Header("Combat Settings")]
     public bool canDamage = true;
-    public float invincibilityDuration = 1f; // Bất tử 1 giây sau khi bị thương
+    public float invincibilityDuration = 1f;
     private float lastDamageTime;
+    public int stompDamage = 50; // Sát thương khi nhảy lên đầu
 
     bool facingRight = true;
     Transform groundCheck;
@@ -44,7 +45,6 @@ public class Player : NetworkBehaviour
         audioSource = GetComponent<AudioSource>();
         audioJump = Resources.Load("Sounds/Jump") as AudioClip;
 
-        // Chỉ Host (StateAuthority) mới được set các giá trị khởi tạo
         if (HasStateAuthority)
         {
             currentPlayerHealth = maxPlayerHealth;
@@ -55,13 +55,10 @@ public class Player : NetworkBehaviour
 
     public override void FixedUpdateNetwork()
     {
-        // Dừng xử lý nếu object lỗi hoặc nhân vật đã chết
         if (Object == null || !Object.IsValid || (bool)isDead) return;
 
-        // Cập nhật chạm đất liên tục
         isGround = Physics2D.OverlapCircle(groundCheck.position, GroundCheckRadius, groundLayer) != null;
 
-        // Lấy Input từ mạng
         if (GetInput(out NetworkInputData data))
         {
             // --- 1. DI CHUYỂN ---
@@ -71,7 +68,6 @@ public class Player : NetworkBehaviour
             if (data.move.x != 0) Flip(data.move.x);
 
             // --- 3. NHẢY ---
-            // Chỉ nhảy khi lúc này bấm, nhưng frame trước chưa bấm (Just Pressed)
             bool jumpJustPressed = data.jumpPressed && !prevJumpPressed;
 
             if (jumpJustPressed)
@@ -88,29 +84,55 @@ public class Player : NetworkBehaviour
                 }
             }
             
-            // Lưu lại trạng thái nút bấm cho frame tiếp theo
             prevJumpPressed = data.jumpPressed; 
         }
         else
         {
-            // Tránh lỗi trượt vô tận khi mất kết nối/thả nút
             body2D.linearVelocity = new Vector2(0, body2D.linearVelocity.y);
         }
 
-        // --- 4. KIỂM TRA CHẾT (CHỈ HOST QUYẾT ĐỊNH) ---
         if (HasStateAuthority)
         {
             CheckDeathLimits();
         }
     }
 
+    // --- XỬ LÝ GIẪM LÊN ĐẦU QUÁI ---
+    private void OnCollisionEnter2D(Collision2D collision)
+{
+    // Chỉ thực hiện xử lý trên Host (StateAuthority) để đảm bảo đồng bộ
+    if (!HasStateAuthority) return;
+
+    if (collision.gameObject.CompareTag("Enemy"))
+    {
+        foreach (ContactPoint2D contact in collision.contacts)
+        {
+            // Kiểm tra nếu điểm va chạm nằm ở phía dưới chân Player (normal.y > 0.5)
+            if (contact.normal.y > 0.5f)
+            {
+                EnemyHealth enemy = collision.gameObject.GetComponent<EnemyHealth>();
+                if (enemy != null)
+                {
+                    // Gây sát thương
+                    enemy.currentEnemyHealth -= stompDamage;
+                    
+                    // Đẩy Player nảy lên
+                    body2D.linearVelocity = new Vector2(body2D.linearVelocity.x, stompBouncePower);
+                    canDoubleJump = true;
+                    break;
+                }
+            }
+        }
+    }
+}
+
     public override void Render()
     {
         UpdateAnimations();
 
-        // HIỂN THỊ UI DÀNH RIÊNG CHO MÁY CỦA NGƯỜI CHƠI NÀY (Local Player)
         if (HasInputAuthority)
         {
+            // Tìm GameManager để cập nhật UI (Giữ nguyên logic cũ của bạn)
             var gm = FindObjectOfType<GameManager>();
             if (gm != null)
             {
@@ -167,22 +189,18 @@ public class Player : NetworkBehaviour
             if (!(bool)isDead)
             {
                 isDead = true;
-                Debug.Log("Player chết! Đang Load lại mạng...");
-                
-                // Load lại cảnh qua đường truyền mạng của Fusion
                 int currentSceneIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
                 Runner.LoadScene(SceneRef.FromIndex(currentSceneIndex));
             }
         }
     }
-
     public void TakeDamage(int damage)
     {
-        // Kiểm tra thời gian bất tử (chỉ Host mới được tính)
+        // Kiểm tra xem đã hết thời gian bất tử chưa mới cho trừ máu tiếp
         if (HasStateAuthority && Time.time >= lastDamageTime + invincibilityDuration)
         {
             currentPlayerHealth -= damage;
-            lastDamageTime = Time.time; // Reset đồng hồ bất tử
+            lastDamageTime = Time.time; // Reset lại đồng hồ tính giờ
         }
     }
 }
