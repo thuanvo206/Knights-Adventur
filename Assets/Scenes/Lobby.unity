@@ -763,6 +763,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 8955625412676733700, guid: e85410dbe29693345a55d77ea739e193, type: 3}
   playerPrefab:
     RawGuidValue: e85410dbe29693345a55d77ea739e193
+  playerName: Player
 --- !u!4 &943495246
 Transform:
   m_ObjectHideFlags: 0

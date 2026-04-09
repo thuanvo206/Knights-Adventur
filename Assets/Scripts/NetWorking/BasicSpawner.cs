@@ -66,6 +66,19 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     // tạo 1 dictionary để lưu trữ các player đã tham gia vào mạng, với key là PlayerRef và value là NetworkObject
     private Dictionary<PlayerRef, NetworkObject> _spawnedCharacters =
         new Dictionary<PlayerRef, NetworkObject>();
+    internal object LocalProfile;
+    
+    /// <summary>
+    /// Lấy tên của người chơi từ PlayerDataManager
+    /// </summary>
+    public string GetPlayerName()
+    {
+        if (PlayerDataManager.Instance != null)
+        {
+            return PlayerDataManager.Instance.GetPlayerName();
+        }
+        return "Player";
+    }
 
     // player tham gia vào mạng
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
