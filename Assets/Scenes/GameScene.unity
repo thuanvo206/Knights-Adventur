@@ -854,6 +854,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 463040876}
     m_Modifications:
+    - target: {fileID: -8030608119242662576, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
+      propertyPath: SortKey
+      value: 1260214190
+      objectReference: {fileID: 0}
     - target: {fileID: 5391302678840938800, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
       propertyPath: m_SortingLayer
       value: 3
@@ -2492,6 +2496,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 463040876}
     m_Modifications:
+    - target: {fileID: -8030608119242662576, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
+      propertyPath: SortKey
+      value: 87389927
+      objectReference: {fileID: 0}
     - target: {fileID: 5391302678840938800, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
       propertyPath: m_SortingLayer
       value: 3
@@ -5362,6 +5370,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 463040876}
     m_Modifications:
+    - target: {fileID: -8030608119242662576, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
+      propertyPath: SortKey
+      value: 1211637214
+      objectReference: {fileID: 0}
     - target: {fileID: 5391302678840938800, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
       propertyPath: m_SortingLayer
       value: 3
@@ -7650,6 +7662,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 463040876}
     m_Modifications:
+    - target: {fileID: -8030608119242662576, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
+      propertyPath: SortKey
+      value: 3005742997
+      objectReference: {fileID: 0}
     - target: {fileID: 5391302678840938800, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
       propertyPath: m_SortingLayer
       value: 3
@@ -8087,7 +8103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 806f0696300aeac44a0e17efee222854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentLanguage: Turkish
+  currentLanguage: English
   detectLanguage: 0
   defaultLanguage: Turkish
   saveLoad: 1
@@ -13460,6 +13476,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 463040876}
     m_Modifications:
+    - target: {fileID: -8030608119242662576, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
+      propertyPath: SortKey
+      value: 2606605652
+      objectReference: {fileID: 0}
     - target: {fileID: 5391302678840938800, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
       propertyPath: m_SortingLayer
       value: 3
@@ -15360,6 +15380,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 463040876}
     m_Modifications:
+    - target: {fileID: -8030608119242662576, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
+      propertyPath: SortKey
+      value: 3847136771
+      objectReference: {fileID: 0}
     - target: {fileID: 5391302678840938800, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
       propertyPath: m_SortingLayer
       value: 3
@@ -15963,6 +15987,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1862955108}
     m_Modifications:
+    - target: {fileID: 1018601772085640754, guid: 7d20dfaf317b41f40a715b70055273b8, type: 3}
+      propertyPath: SortKey
+      value: 4223878263
+      objectReference: {fileID: 0}
     - target: {fileID: 6256097857056926817, guid: 7d20dfaf317b41f40a715b70055273b8, type: 3}
       propertyPath: m_Name
       value: SlimeMonster (1)
@@ -17857,6 +17885,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 463040876}
     m_Modifications:
+    - target: {fileID: -8030608119242662576, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
+      propertyPath: SortKey
+      value: 1650188481
+      objectReference: {fileID: 0}
     - target: {fileID: 5391302678840938800, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
       propertyPath: m_SortingLayer
       value: 3
@@ -19833,6 +19865,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 463040876}
     m_Modifications:
+    - target: {fileID: -8030608119242662576, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
+      propertyPath: SortKey
+      value: 887497672
+      objectReference: {fileID: 0}
     - target: {fileID: 5391302678840938800, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
       propertyPath: m_SortingLayer
       value: 3
@@ -23917,6 +23953,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 463040876}
     m_Modifications:
+    - target: {fileID: -8030608119242662576, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
+      propertyPath: SortKey
+      value: 4261233751
+      objectReference: {fileID: 0}
     - target: {fileID: 5391302678840938800, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
       propertyPath: m_SortingLayer
       value: 3
@@ -24082,6 +24122,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 955656719}
     m_Modifications:
+    - target: {fileID: 1018601772085640754, guid: 7d20dfaf317b41f40a715b70055273b8, type: 3}
+      propertyPath: SortKey
+      value: 1567717685
+      objectReference: {fileID: 0}
     - target: {fileID: 6256097857056926817, guid: 7d20dfaf317b41f40a715b70055273b8, type: 3}
       propertyPath: m_Name
       value: FlowerEnemy (1)
@@ -26886,6 +26930,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 463040876}
     m_Modifications:
+    - target: {fileID: -8030608119242662576, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
+      propertyPath: SortKey
+      value: 3294824122
+      objectReference: {fileID: 0}
     - target: {fileID: 5391302678840938800, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
       propertyPath: m_SortingLayer
       value: 3
@@ -29128,6 +29176,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 463040876}
     m_Modifications:
+    - target: {fileID: -8030608119242662576, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
+      propertyPath: SortKey
+      value: 2697626555
+      objectReference: {fileID: 0}
     - target: {fileID: 5391302678840938800, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
       propertyPath: m_SortingLayer
       value: 3
@@ -32530,6 +32582,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 463040876}
     m_Modifications:
+    - target: {fileID: -8030608119242662576, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
+      propertyPath: SortKey
+      value: 2114445102
+      objectReference: {fileID: 0}
     - target: {fileID: 5391302678840938800, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
       propertyPath: m_SortingLayer
       value: 3
@@ -33432,6 +33488,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 463040876}
     m_Modifications:
+    - target: {fileID: -8030608119242662576, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
+      propertyPath: SortKey
+      value: 290025663
+      objectReference: {fileID: 0}
     - target: {fileID: 5391302678840938800, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
       propertyPath: m_SortingLayer
       value: 3
@@ -34014,6 +34074,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 463040876}
     m_Modifications:
+    - target: {fileID: -8030608119242662576, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
+      propertyPath: SortKey
+      value: 467600821
+      objectReference: {fileID: 0}
     - target: {fileID: 5391302678840938800, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
       propertyPath: m_SortingLayer
       value: 3
@@ -35604,6 +35668,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 463040876}
     m_Modifications:
+    - target: {fileID: -8030608119242662576, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
+      propertyPath: SortKey
+      value: 3265127203
+      objectReference: {fileID: 0}
     - target: {fileID: 5391302678840938800, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
       propertyPath: m_SortingLayer
       value: 3
@@ -37227,6 +37295,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 463040876}
     m_Modifications:
+    - target: {fileID: -8030608119242662576, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
+      propertyPath: SortKey
+      value: 2149396298
+      objectReference: {fileID: 0}
     - target: {fileID: 5391302678840938800, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
       propertyPath: m_SortingLayer
       value: 3
@@ -37912,6 +37984,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1862955108}
     m_Modifications:
+    - target: {fileID: -6694233343437689936, guid: 06d5359b027060b449c279e21996dd4b, type: 3}
+      propertyPath: SortKey
+      value: 1436846203
+      objectReference: {fileID: 0}
     - target: {fileID: 8459588879250545201, guid: 06d5359b027060b449c279e21996dd4b, type: 3}
       propertyPath: m_Name
       value: SlimeMonster (2)
@@ -39915,6 +39991,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 463040876}
     m_Modifications:
+    - target: {fileID: -8030608119242662576, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
+      propertyPath: SortKey
+      value: 1079603395
+      objectReference: {fileID: 0}
     - target: {fileID: 5391302678840938800, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
       propertyPath: m_SortingLayer
       value: 3
@@ -45479,6 +45559,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 463040876}
     m_Modifications:
+    - target: {fileID: -8030608119242662576, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
+      propertyPath: SortKey
+      value: 1518207450
+      objectReference: {fileID: 0}
     - target: {fileID: 5391302678840938800, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
       propertyPath: m_SortingLayer
       value: 3
@@ -48780,6 +48864,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 463040876}
     m_Modifications:
+    - target: {fileID: -8030608119242662576, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
+      propertyPath: SortKey
+      value: 3912501056
+      objectReference: {fileID: 0}
     - target: {fileID: 5391302678840938800, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
       propertyPath: m_SortingLayer
       value: 3
@@ -51290,6 +51378,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 463040876}
     m_Modifications:
+    - target: {fileID: -8030608119242662576, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
+      propertyPath: SortKey
+      value: 4169524717
+      objectReference: {fileID: 0}
     - target: {fileID: 5391302678840938800, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
       propertyPath: m_SortingLayer
       value: 3
@@ -53150,6 +53242,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 463040876}
     m_Modifications:
+    - target: {fileID: -8030608119242662576, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
+      propertyPath: SortKey
+      value: 3064152868
+      objectReference: {fileID: 0}
     - target: {fileID: 5391302678840938800, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
       propertyPath: m_SortingLayer
       value: 3
@@ -57935,6 +58031,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 463040876}
     m_Modifications:
+    - target: {fileID: -8030608119242662576, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
+      propertyPath: SortKey
+      value: 4199439303
+      objectReference: {fileID: 0}
     - target: {fileID: 5391302678840938800, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
       propertyPath: m_SortingLayer
       value: 3
@@ -60397,6 +60497,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1862955108}
     m_Modifications:
+    - target: {fileID: -6694233343437689936, guid: 06d5359b027060b449c279e21996dd4b, type: 3}
+      propertyPath: SortKey
+      value: 3339239267
+      objectReference: {fileID: 0}
     - target: {fileID: 8459588879250545201, guid: 06d5359b027060b449c279e21996dd4b, type: 3}
       propertyPath: m_Name
       value: SlimeMonster
@@ -60711,6 +60815,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1298511790}
     m_Modifications:
+    - target: {fileID: 3279644097434500904, guid: 48b28c161e5090a44bd37b917dcfec38, type: 3}
+      propertyPath: SortKey
+      value: 446508743
+      objectReference: {fileID: 0}
     - target: {fileID: 4983308943435771333, guid: 48b28c161e5090a44bd37b917dcfec38, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -60772,6 +60880,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 463040876}
     m_Modifications:
+    - target: {fileID: -8030608119242662576, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
+      propertyPath: SortKey
+      value: 2301376538
+      objectReference: {fileID: 0}
     - target: {fileID: 5391302678840938813, guid: f9cdc5cf58f22114f952ba3c634f4574, type: 3}
       propertyPath: m_Name
       value: Coin
@@ -61014,6 +61126,10 @@ PrefabInstance:
     - target: {fileID: 1607006232, guid: 7d20dfaf317b41f40a715b70055273b8, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1018601772085640754, guid: 7d20dfaf317b41f40a715b70055273b8, type: 3}
+      propertyPath: SortKey
+      value: 2853910057
       objectReference: {fileID: 0}
     - target: {fileID: 6256097857056926817, guid: 7d20dfaf317b41f40a715b70055273b8, type: 3}
       propertyPath: m_Name
