@@ -12,22 +12,26 @@ public class Player : NetworkBehaviour
     public float playerSpeed = 10f;
     public float jumpPower = 15f;
     public float doubleJumpPower = 12f;
-    public float stompBouncePower = 12f; // Lực nảy lên khi giẫm trúng quái
+    public float stompBouncePower = 12f;
 
-    [Networked] public int maxPlayerHealth { get; set; } = 100;
+    [Networked] public int maxPlayerHealth { get; set; }
     [Networked] public int currentPlayerHealth { get; set; }
     [Networked] public int currentCoin { get; set; }
     [Networked] public NetworkBool isDead { get; set; }
     [Networked] public NetworkBool isGround { get; set; }
     [Networked] public NetworkBool canDoubleJump { get; set; }
-    
     [Networked] public NetworkBool prevJumpPressed { get; set; }
 
     [Header("Combat Settings")]
     public bool canDamage = true;
     public float invincibilityDuration = 1f;
-    private float lastDamageTime;
-    public int stompDamage = 50; // Sát thương khi nhảy lên đầu
+
+    // BUG FIX: Dùng [Networked] tick để đồng bộ thời gian bất tử qua mạng
+    // Nếu dùng float lastDamageTime local + Time.time, mỗi client có giá trị riêng
+    // → client có thể bị damage nhiều lần trong khi Host đang trong trạng thái bất tử
+    [Networked] private float lastDamageTime { get; set; }
+
+    public int stompDamage = 50;
 
     bool facingRight = true;
     Transform groundCheck;
@@ -47,9 +51,13 @@ public class Player : NetworkBehaviour
 
         if (HasStateAuthority)
         {
+            // BUG FIX: Networked property không có default value trong Fusion
+            // phải set trong Spawned()
+            maxPlayerHealth = 100;
             currentPlayerHealth = maxPlayerHealth;
             isDead = false;
             currentCoin = 0;
+            lastDamageTime = -invincibilityDuration; // cho phép damage ngay từ đầu
         }
     }
 
@@ -61,13 +69,10 @@ public class Player : NetworkBehaviour
 
         if (GetInput(out NetworkInputData data))
         {
-            // --- 1. DI CHUYỂN ---
             body2D.linearVelocity = new Vector2(data.move.x * playerSpeed, body2D.linearVelocity.y);
 
-            // --- 2. QUAY MẶT ---
             if (data.move.x != 0) Flip(data.move.x);
 
-            // --- 3. NHẢY ---
             bool jumpJustPressed = data.jumpPressed && !prevJumpPressed;
 
             if (jumpJustPressed)
@@ -83,8 +88,8 @@ public class Player : NetworkBehaviour
                     canDoubleJump = false;
                 }
             }
-            
-            prevJumpPressed = data.jumpPressed; 
+
+            prevJumpPressed = data.jumpPressed;
         }
         else
         {
@@ -97,34 +102,28 @@ public class Player : NetworkBehaviour
         }
     }
 
-    // --- XỬ LÝ GIẪM LÊN ĐẦU QUÁI ---
     private void OnCollisionEnter2D(Collision2D collision)
-{
-    // Chỉ thực hiện xử lý trên Host (StateAuthority) để đảm bảo đồng bộ
-    if (!HasStateAuthority) return;
-
-    if (collision.gameObject.CompareTag("Enemy"))
     {
-        foreach (ContactPoint2D contact in collision.contacts)
+        if (!HasStateAuthority) return;
+
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-            // Kiểm tra nếu điểm va chạm nằm ở phía dưới chân Player (normal.y > 0.5)
-            if (contact.normal.y > 0.5f)
+            foreach (ContactPoint2D contact in collision.contacts)
             {
-                EnemyHealth enemy = collision.gameObject.GetComponent<EnemyHealth>();
-                if (enemy != null)
+                if (contact.normal.y > 0.5f)
                 {
-                    // Gây sát thương
-                    enemy.currentEnemyHealth -= stompDamage;
-                    
-                    // Đẩy Player nảy lên
-                    body2D.linearVelocity = new Vector2(body2D.linearVelocity.x, stompBouncePower);
-                    canDoubleJump = true;
-                    break;
+                    EnemyHealth enemy = collision.gameObject.GetComponent<EnemyHealth>();
+                    if (enemy != null)
+                    {
+                        enemy.currentEnemyHealth -= stompDamage;
+                        body2D.linearVelocity = new Vector2(body2D.linearVelocity.x, stompBouncePower);
+                        canDoubleJump = true;
+                        break;
+                    }
                 }
             }
         }
     }
-}
 
     public override void Render()
     {
@@ -132,7 +131,6 @@ public class Player : NetworkBehaviour
 
         if (HasInputAuthority)
         {
-            // Tìm GameManager để cập nhật UI (Giữ nguyên logic cũ của bạn)
             var gm = FindObjectOfType<GameManager>();
             if (gm != null)
             {
@@ -184,7 +182,7 @@ public class Player : NetworkBehaviour
 
     void CheckDeathLimits()
     {
-        if (HasStateAuthority && (transform.position.y <= -6 || currentPlayerHealth <= 0))
+        if (transform.position.y <= -6 || currentPlayerHealth <= 0)
         {
             if (!(bool)isDead)
             {
@@ -194,13 +192,16 @@ public class Player : NetworkBehaviour
             }
         }
     }
+
     public void TakeDamage(int damage)
     {
-        // Kiểm tra xem đã hết thời gian bất tử chưa mới cho trừ máu tiếp
-        if (HasStateAuthority && Time.time >= lastDamageTime + invincibilityDuration)
+        // BUG FIX: Dùng Runner.SimulationTime thay vì Time.time
+        // Time.time chạy theo real-time của từng máy, không đồng bộ với network tick
+        // Runner.SimulationTime đồng bộ chính xác với Fusion simulation
+        if (HasStateAuthority && Runner.SimulationTime >= lastDamageTime + invincibilityDuration)
         {
             currentPlayerHealth -= damage;
-            lastDamageTime = Time.time; // Reset lại đồng hồ tính giờ
+            lastDamageTime = Runner.SimulationTime;
         }
     }
 }

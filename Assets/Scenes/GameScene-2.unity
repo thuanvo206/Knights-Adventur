@@ -33482,7 +33482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 806f0696300aeac44a0e17efee222854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentLanguage: English
+  currentLanguage: Turkish
   detectLanguage: 0
   defaultLanguage: Turkish
   saveLoad: 1
@@ -40838,6 +40838,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1496775910189198858, guid: 18e94ac05750cff47ad0a04933164c53, type: 3}
   m_PrefabInstance: {fileID: 1881997867}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1883192840
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1883192841}
+  m_Layer: 0
+  m_Name: 'SpawnPoint '
+  m_TagString: SpawnPoint
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1883192841
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1883192840}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.56, y: 3.28, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1885681470
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47513,3 +47544,4 @@ SceneRoots:
   - {fileID: 769843632}
   - {fileID: 1570968569}
   - {fileID: 1279307069}
+  - {fileID: 1883192841}

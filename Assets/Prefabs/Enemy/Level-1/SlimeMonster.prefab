@@ -4982,6 +4982,7 @@ GameObject:
   - component: {fileID: 2572787499268841497}
   - component: {fileID: 2572787497858184791}
   - component: {fileID: -6694233343437689936}
+  - component: {fileID: -2436764795004484726}
   m_Layer: 6
   m_Name: SlimeMonster
   m_TagString: Enemy
@@ -5239,4 +5240,22 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 2572787499268841497}
+  - {fileID: -2436764795004484726}
   ForceRemoteRenderTimeframe: 0
+--- !u!114 &-2436764795004484726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8459588879250545201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Fusion.Runtime.dll::Fusion.NetworkTransform
+  _stateAuthorityChangeErrorCorrectionDelta: 0
+  SyncScale: 0
+  SyncParent: 0
+  _autoAOIOverride: 1
+  DisableSharedModeInterpolation: 0

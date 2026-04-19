@@ -1,34 +1,33 @@
 using UnityEngine;
 using Fusion;
-using UnityEngine.SceneManagement; // Thêm thư viện này
+using UnityEngine.SceneManagement;
 
-public class Portal : NetworkBehaviour 
+public class Portal : NetworkBehaviour
 {
     GameManager gameManager;
 
-    private void Start()
+    // BUG FIX: NetworkBehaviour nên dùng Spawned() thay vì Start()
+    // Start() có thể chạy trước khi network object được khởi tạo xong
+    // → gameManager có thể null hoặc tìm sai object
+    public override void Spawned()
     {
         gameManager = FindObjectOfType<GameManager>();
     }
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        // Chỉ Host mới có quyền ra lệnh đổi Scene
         if (!HasStateAuthority) return;
 
         if (collider.CompareTag("Player"))
         {
-            // Cách lấy tên Scene hiện tại chuẩn và không bị lỗi đỏ
             string currentSceneName = SceneManager.GetActiveScene().name;
 
             if (currentSceneName == "GameScene")
             {
-                // Đồng bộ chuyển cảnh cho tất cả người chơi
-                Runner.LoadScene(SceneRef.FromIndex(2)); 
+                Runner.LoadScene(SceneRef.FromIndex(2));
             }
             else if (currentSceneName == "GameScene-2")
             {
-                // Gọi RPC để hiện bảng kết thúc cho tất cả mọi người
                 RPC_FinishGame();
             }
         }
@@ -40,7 +39,6 @@ public class Portal : NetworkBehaviour
         if (gameManager != null && gameManager.endingGame != null)
         {
             gameManager.endingGame.SetActive(true);
-            // Lưu ý: Không dùng Time.timeScale = 0 trong Multiplayer vì sẽ làm treo Network
         }
     }
 }

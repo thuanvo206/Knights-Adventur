@@ -336,7 +336,7 @@ MonoBehaviour:
   jumpPower: 10
   doubleJumpPower: 15
   stompBouncePower: 1000
-  _maxPlayerHealth: 100
+  _maxPlayerHealth: 1000000
   _currentPlayerHealth: 0
   _currentCoin: 0
   _isDead:
