@@ -5047,6 +5047,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 625587629}
     m_Modifications:
+    - target: {fileID: -729423099573095411, guid: dc01083d65598da4c9d5aeb4d5889c4b, type: 3}
+      propertyPath: SortKey
+      value: 1423807336
+      objectReference: {fileID: 0}
     - target: {fileID: 1154812976122675991, guid: dc01083d65598da4c9d5aeb4d5889c4b, type: 3}
       propertyPath: moveRight
       value: 0
@@ -8539,6 +8543,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5608955078929303474, guid: 24aa79f770431604a81ced7f46440e98, type: 3}
+      propertyPath: SortKey
+      value: 3035157975
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11903,6 +11911,10 @@ PrefabInstance:
     - target: {fileID: 1915510845560200651, guid: 24aa79f770431604a81ced7f46440e98, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5608955078929303474, guid: 24aa79f770431604a81ced7f46440e98, type: 3}
+      propertyPath: SortKey
+      value: 1215092396
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21414,7 +21426,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   translationName: EndingDescText
-  FallbackText: 
+  FallbackText: "Tebrikler, bu demonun sonuna geldiniz. Bunu okuyan bir geli\u015Ftirici
+    iseniz, isterseniz level design'i geli\u015Ftirebilir ve daha uzun bir oynan\u0131\u015F
+    sunabilirsiniz. Oynad\u0131\u011F\u0131n\u0131z i\xE7in te\u015Fekk\xFCr ederim\n\n-
+    Batuhan Demiray"
 --- !u!1001 &1051613868
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26713,6 +26728,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 625587629}
     m_Modifications:
+    - target: {fileID: -729423099573095411, guid: dc01083d65598da4c9d5aeb4d5889c4b, type: 3}
+      propertyPath: SortKey
+      value: 2177843529
+      objectReference: {fileID: 0}
     - target: {fileID: 1154812976122675991, guid: dc01083d65598da4c9d5aeb4d5889c4b, type: 3}
       propertyPath: moveRight
       value: 0
@@ -27856,6 +27875,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 625587629}
     m_Modifications:
+    - target: {fileID: -729423099573095411, guid: dc01083d65598da4c9d5aeb4d5889c4b, type: 3}
+      propertyPath: SortKey
+      value: 397885700
+      objectReference: {fileID: 0}
     - target: {fileID: 1154812976122675991, guid: dc01083d65598da4c9d5aeb4d5889c4b, type: 3}
       propertyPath: moveRight
       value: 1
@@ -28844,6 +28867,10 @@ PrefabInstance:
     - target: {fileID: 1915510845560200651, guid: 24aa79f770431604a81ced7f46440e98, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5608955078929303474, guid: 24aa79f770431604a81ced7f46440e98, type: 3}
+      propertyPath: SortKey
+      value: 3067454816
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -31027,6 +31054,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5608955078929303474, guid: 24aa79f770431604a81ced7f46440e98, type: 3}
+      propertyPath: SortKey
+      value: 1549063439
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -31437,7 +31468,19 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 1483354920}
+  - {fileID: 1483354922}
   ForceRemoteRenderTimeframe: 0
+--- !u!114 &1483354922 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -6863885888131687229, guid: c80fa57316add7745b206a58ce7b289d, type: 3}
+  m_PrefabInstance: {fileID: 1483354917}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1483354919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Fusion.Runtime.dll::Fusion.NetworkTransform
 --- !u!1001 &1484945717
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33115,7 +33158,19 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 1557208855}
+  - {fileID: 1557208857}
   ForceRemoteRenderTimeframe: 0
+--- !u!114 &1557208857 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2489481604106746545, guid: dc01083d65598da4c9d5aeb4d5889c4b, type: 3}
+  m_PrefabInstance: {fileID: 1557208852}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1557208854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Fusion.Runtime.dll::Fusion.NetworkTransform
 --- !u!1001 &1557606695
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33482,7 +33537,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 806f0696300aeac44a0e17efee222854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentLanguage: Turkish
+  currentLanguage: English
   detectLanguage: 0
   defaultLanguage: Turkish
   saveLoad: 1
@@ -37115,6 +37170,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 625587629}
     m_Modifications:
+    - target: {fileID: -729423099573095411, guid: dc01083d65598da4c9d5aeb4d5889c4b, type: 3}
+      propertyPath: SortKey
+      value: 4259061871
+      objectReference: {fileID: 0}
     - target: {fileID: 1154812976122675991, guid: dc01083d65598da4c9d5aeb4d5889c4b, type: 3}
       propertyPath: moveRight
       value: 0
@@ -39811,6 +39870,10 @@ PrefabInstance:
     - target: {fileID: 1915510845560200651, guid: 24aa79f770431604a81ced7f46440e98, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5608955078929303474, guid: 24aa79f770431604a81ced7f46440e98, type: 3}
+      propertyPath: SortKey
+      value: 1524147043
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -45857,6 +45920,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 625587629}
     m_Modifications:
+    - target: {fileID: -729423099573095411, guid: dc01083d65598da4c9d5aeb4d5889c4b, type: 3}
+      propertyPath: SortKey
+      value: 2708531359
+      objectReference: {fileID: 0}
     - target: {fileID: 1154812976122675991, guid: dc01083d65598da4c9d5aeb4d5889c4b, type: 3}
       propertyPath: enemySpeed
       value: 5
@@ -46720,7 +46787,19 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 756384223693124333}
+  - {fileID: 6256097856397257558}
   ForceRemoteRenderTimeframe: 0
+--- !u!114 &6256097856397257558 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -6863885888131687229, guid: c80fa57316add7745b206a58ce7b289d, type: 3}
+  m_PrefabInstance: {fileID: 756384223693124331}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756384223693124332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Fusion.Runtime.dll::Fusion.NetworkTransform
 --- !u!1001 &6697997979716743662
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47218,6 +47297,22 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 780849249}
+    - target: {fileID: 4438168626318463110, guid: e97b3193af2cfcb49a448e7feb8c3c97, type: 3}
+      propertyPath: m_text
+      value: Ending
+      objectReference: {fileID: 0}
+    - target: {fileID: 4438168626318463110, guid: e97b3193af2cfcb49a448e7feb8c3c97, type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
+      objectReference: {fileID: 0}
+    - target: {fileID: 8080903699507503226, guid: e97b3193af2cfcb49a448e7feb8c3c97, type: 3}
+      propertyPath: m_text
+      value: Okay
+      objectReference: {fileID: 0}
+    - target: {fileID: 8080903699507503226, guid: e97b3193af2cfcb49a448e7feb8c3c97, type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
+      objectReference: {fileID: 0}
     - target: {fileID: 8080903699695479605, guid: e97b3193af2cfcb49a448e7feb8c3c97, type: 3}
       propertyPath: m_Name
       value: EndingScreen
@@ -47269,6 +47364,20 @@ PrefabInstance:
     - target: {fileID: 8080903699695479606, guid: e97b3193af2cfcb49a448e7feb8c3c97, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8080903700544243255, guid: e97b3193af2cfcb49a448e7feb8c3c97, type: 3}
+      propertyPath: m_text
+      value: 'Congratulations
+
+
+
+
+
+        YOU WIN'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8080903700544243255, guid: e97b3193af2cfcb49a448e7feb8c3c97, type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

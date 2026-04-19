@@ -16,7 +16,7 @@ public class OpeningManager : MonoBehaviour
 
     public void PlayGame()
     {
-        SceneManager.LoadScene("Scenes/GameScene");
+        SceneManager.LoadScene("Scenes/Lobby");
         Time.timeScale = 1.0f;
     }
 
