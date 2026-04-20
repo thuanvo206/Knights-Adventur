@@ -27163,8 +27163,8 @@ GameObject:
   - component: {fileID: 969254418}
   - component: {fileID: 969254422}
   - component: {fileID: 969254421}
-  - component: {fileID: 969254420}
-  - component: {fileID: 969254419}
+  - component: {fileID: 969254424}
+  - component: {fileID: 969254423}
   m_Layer: 5
   m_Name: Panel Chat
   m_TagString: Untagged
@@ -27190,38 +27190,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -650.29004, y: -11}
+  m_AnchoredPosition: {x: -650.29, y: -11}
   m_SizeDelta: {x: -1300.58, y: -551.41}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &969254419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 969254417}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90c50e5d7a9f8624c9548ea6f365f9f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ChatUi
-  chatPanel: {fileID: 1446549526}
-  messagePrefab: {fileID: 4718135284910155699, guid: 7f1ac9feb52d4f64fbef4d91fe3a57a8, type: 3}
-  inputField: {fileID: 1774428195}
-  messageContainer: {fileID: 0}
-  spawner: {fileID: 0}
---- !u!114 &969254420
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 969254417}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17003b0525bd21d4dbb371fc712af34d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ChatManager
 --- !u!114 &969254421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27248,6 +27219,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 969254417}
   m_CullTransparentMesh: 1
+--- !u!114 &969254423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969254417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17003b0525bd21d4dbb371fc712af34d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChatManager
+--- !u!114 &969254424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969254417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90c50e5d7a9f8624c9548ea6f365f9f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChatUI
+  chatPanel: {fileID: 1446549526}
+  messagePrefab: {fileID: 3490807383501559078}
+  inputField: {fileID: 1774428195}
+  messageContainer: {fileID: 0}
+  spawner: {fileID: 0}
 --- !u!1001 &970611588
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -61714,6 +61714,11 @@ PrefabInstance:
 --- !u!224 &3490807383501559077 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3747070659954800056, guid: 7f1ac9feb52d4f64fbef4d91fe3a57a8, type: 3}
+  m_PrefabInstance: {fileID: 3490807383501559076}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3490807383501559078 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8662647950418762809, guid: 7f1ac9feb52d4f64fbef4d91fe3a57a8, type: 3}
   m_PrefabInstance: {fileID: 3490807383501559076}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4321471315251627138
