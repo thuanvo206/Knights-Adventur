@@ -27162,9 +27162,9 @@ GameObject:
   m_Component:
   - component: {fileID: 969254418}
   - component: {fileID: 969254422}
-  - component: {fileID: 969254421}
-  - component: {fileID: 969254424}
-  - component: {fileID: 969254423}
+  - component: {fileID: 969254425}
+  - component: {fileID: 969254426}
+  - component: {fileID: 969254427}
   m_Layer: 5
   m_Name: Panel Chat
   m_TagString: Untagged
@@ -27193,7 +27193,15 @@ RectTransform:
   m_AnchoredPosition: {x: -650.29, y: -11}
   m_SizeDelta: {x: -1300.58, y: -551.41}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &969254421
+--- !u!222 &969254422
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969254417}
+  m_CullTransparentMesh: 1
+--- !u!114 &969254425
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -27205,21 +27213,13 @@ MonoBehaviour:
   m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Fusion.Runtime.dll::Fusion.NetworkObject
-  SortKey: 1866846159
+  SortKey: 4119676747
   ObjectInterest: 1
   Flags: 262145
   NestedObjects: []
   NetworkedBehaviours: []
   ForceRemoteRenderTimeframe: 0
---- !u!222 &969254422
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 969254417}
-  m_CullTransparentMesh: 1
---- !u!114 &969254423
+--- !u!114 &969254426
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -27231,7 +27231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17003b0525bd21d4dbb371fc712af34d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChatManager
---- !u!114 &969254424
+--- !u!114 &969254427
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -27244,7 +27244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChatUI
   chatPanel: {fileID: 1446549526}
-  messagePrefab: {fileID: 3490807383501559078}
+  messagePrefab: {fileID: 8662647950418762809, guid: 7f1ac9feb52d4f64fbef4d91fe3a57a8, type: 3}
   inputField: {fileID: 1774428195}
   messageContainer: {fileID: 0}
   spawner: {fileID: 0}
@@ -61648,11 +61648,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3747070659954800056, guid: 7f1ac9feb52d4f64fbef4d91fe3a57a8, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 500.98
+      value: 599.42017
       objectReference: {fileID: 0}
     - target: {fileID: 3747070659954800056, guid: 7f1ac9feb52d4f64fbef4d91fe3a57a8, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 50
+      value: 62.62
       objectReference: {fileID: 0}
     - target: {fileID: 3747070659954800056, guid: 7f1ac9feb52d4f64fbef4d91fe3a57a8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -61684,11 +61684,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3747070659954800056, guid: 7f1ac9feb52d4f64fbef4d91fe3a57a8, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 250.49002
+      value: 309.71008
       objectReference: {fileID: 0}
     - target: {fileID: 3747070659954800056, guid: 7f1ac9feb52d4f64fbef4d91fe3a57a8, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -25
+      value: -41.309998
       objectReference: {fileID: 0}
     - target: {fileID: 3747070659954800056, guid: 7f1ac9feb52d4f64fbef4d91fe3a57a8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -61706,6 +61706,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Text Message
       objectReference: {fileID: 0}
+    - target: {fileID: 8662647950418762809, guid: 7f1ac9feb52d4f64fbef4d91fe3a57a8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -61714,11 +61718,6 @@ PrefabInstance:
 --- !u!224 &3490807383501559077 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3747070659954800056, guid: 7f1ac9feb52d4f64fbef4d91fe3a57a8, type: 3}
-  m_PrefabInstance: {fileID: 3490807383501559076}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &3490807383501559078 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8662647950418762809, guid: 7f1ac9feb52d4f64fbef4d91fe3a57a8, type: 3}
   m_PrefabInstance: {fileID: 3490807383501559076}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4321471315251627138
