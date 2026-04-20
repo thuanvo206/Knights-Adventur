@@ -7238,10 +7238,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 946144276}
     m_Modifications:
-    - target: {fileID: 4842553187233292304, guid: 9530112b7b5da7149a7f244391e9799d, type: 3}
-      propertyPath: SortKey
-      value: 374698697
-      objectReference: {fileID: 0}
     - target: {fileID: 7919412502867759956, guid: 9530112b7b5da7149a7f244391e9799d, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -16840,10 +16836,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 946144276}
     m_Modifications:
-    - target: {fileID: 4842553187233292304, guid: 9530112b7b5da7149a7f244391e9799d, type: 3}
-      propertyPath: SortKey
-      value: 1813304341
-      objectReference: {fileID: 0}
     - target: {fileID: 7919412502867759956, guid: 9530112b7b5da7149a7f244391e9799d, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -21742,10 +21734,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 422074540}
     m_Modifications:
-    - target: {fileID: -2482033979275879463, guid: ac0a76b97557b624297b269ca6db83fd, type: 3}
-      propertyPath: SortKey
-      value: 2160723593
-      objectReference: {fileID: 0}
     - target: {fileID: 3150902623838350660, guid: ac0a76b97557b624297b269ca6db83fd, type: 3}
       propertyPath: m_Name
       value: Spike (4)
@@ -27177,10 +27165,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 422074540}
     m_Modifications:
-    - target: {fileID: -2482033979275879463, guid: ac0a76b97557b624297b269ca6db83fd, type: 3}
-      propertyPath: SortKey
-      value: 177857547
-      objectReference: {fileID: 0}
     - target: {fileID: 3150902623838350660, guid: ac0a76b97557b624297b269ca6db83fd, type: 3}
       propertyPath: m_Name
       value: Spike (2)
@@ -28154,10 +28138,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 422074540}
     m_Modifications:
-    - target: {fileID: -2482033979275879463, guid: ac0a76b97557b624297b269ca6db83fd, type: 3}
-      propertyPath: SortKey
-      value: 1156984119
-      objectReference: {fileID: 0}
     - target: {fileID: 3150902623838350660, guid: ac0a76b97557b624297b269ca6db83fd, type: 3}
       propertyPath: m_Name
       value: Spike (5)
@@ -30787,10 +30767,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 422074540}
     m_Modifications:
-    - target: {fileID: -2482033979275879463, guid: ac0a76b97557b624297b269ca6db83fd, type: 3}
-      propertyPath: SortKey
-      value: 1836801086
-      objectReference: {fileID: 0}
     - target: {fileID: 3150902623838350660, guid: ac0a76b97557b624297b269ca6db83fd, type: 3}
       propertyPath: m_Name
       value: Spike (3)
@@ -42712,15 +42688,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1531080006}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.37, y: -0.04, z: -17.30225}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1435604879}
   - {fileID: 1356460391}
   - {fileID: 1419613086}
-  m_Father: {fileID: 1729695133}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1535109122
 PrefabInstance:
@@ -44628,10 +44604,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 422074540}
     m_Modifications:
-    - target: {fileID: -2482033979275879463, guid: ac0a76b97557b624297b269ca6db83fd, type: 3}
-      propertyPath: SortKey
-      value: 3321316377
-      objectReference: {fileID: 0}
     - target: {fileID: 3150902623838350660, guid: ac0a76b97557b624297b269ca6db83fd, type: 3}
       propertyPath: m_Name
       value: Spike (1)
@@ -48429,7 +48401,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1531080007}
   - {fileID: 921001213}
   - {fileID: 531499501}
   m_Father: {fileID: 0}
@@ -61585,10 +61556,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 946144276}
     m_Modifications:
-    - target: {fileID: 4842553187233292304, guid: 9530112b7b5da7149a7f244391e9799d, type: 3}
-      propertyPath: SortKey
-      value: 376910755
-      objectReference: {fileID: 0}
     - target: {fileID: 7919412502867759956, guid: 9530112b7b5da7149a7f244391e9799d, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -61810,10 +61777,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 422074540}
     m_Modifications:
-    - target: {fileID: -2482033979275879463, guid: ac0a76b97557b624297b269ca6db83fd, type: 3}
-      propertyPath: SortKey
-      value: 2222839262
-      objectReference: {fileID: 0}
     - target: {fileID: 3150902623838350660, guid: ac0a76b97557b624297b269ca6db83fd, type: 3}
       propertyPath: m_Name
       value: Spike
@@ -62256,6 +62219,7 @@ SceneRoots:
   - {fileID: 745083480}
   - {fileID: 8023714177101240990}
   - {fileID: 9182433770180531715}
+  - {fileID: 1531080007}
   - {fileID: 1729695133}
   - {fileID: 1413050767}
   - {fileID: 1377396376}

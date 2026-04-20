@@ -13,7 +13,7 @@ public class LobbyRunner : MonoBehaviour
     public async void CreateRoom(string roomName)
     {
         Debug.Log($" >>>>>>> Creating room: {roomName}");
-        var scene = SceneRef.FromIndex(1); // index 1 là scene game chính
+        var scene = SceneRef.FromIndex(2); // index 1 là scene game chính
         await _BasicSpawner.StartHost(roomName, scene);
     }
     

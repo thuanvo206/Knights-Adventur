@@ -24,7 +24,7 @@ public class Portal : NetworkBehaviour
 
             if (currentSceneName == "GameScene")
             {
-                Runner.LoadScene(SceneRef.FromIndex(2));
+                Runner.LoadScene(SceneRef.FromIndex(3));
             }
             else if (currentSceneName == "GameScene-2")
             {
